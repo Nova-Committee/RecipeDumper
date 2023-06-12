@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cn.mcmod.recipedumper.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "recipedumper.refmap.json",
+  "mixins": [
+    "ILegacyUpgradeRecipeAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

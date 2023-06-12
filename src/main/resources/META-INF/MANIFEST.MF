@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Title: recipedumper
+MixinConfigs: recipedumper.mixins.json
+Implementation-Version: 3.0
+Specification-Title: recipedumper
+Implementation-Timestamp: 2023-02-27T22:32:52+0800
+Specification-Version: 1
+
