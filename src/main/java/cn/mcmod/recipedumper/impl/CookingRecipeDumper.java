@@ -15,8 +15,8 @@ public class CookingRecipeDumper
     }
 
 
-    public void setOutputs(AbstractCookingRecipe recipe, IRecipeOutputs outputs) {
-        outputs.addOutput(1, recipe.getResultItem(RegistryAccess.EMPTY));
+    public void setOutputs(AbstractCookingRecipe recipe, IRecipeOutputs outputs, RegistryAccess access) {
+        outputs.addOutput(1, recipe.getResultItem(access));
     }
 
 
