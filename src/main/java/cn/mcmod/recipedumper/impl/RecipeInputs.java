@@ -39,7 +39,6 @@ public class RecipeInputs
             }
 
         } catch (Throwable throwable) {
-
             throw new RecipeDumpException();
         }
         return json;

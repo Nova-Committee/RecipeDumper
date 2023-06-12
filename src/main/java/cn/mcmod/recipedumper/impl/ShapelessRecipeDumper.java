@@ -1,4 +1,3 @@
-
 package cn.mcmod.recipedumper.impl;
 
 import cn.mcmod.recipedumper.api.IRecipeDumper;

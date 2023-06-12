@@ -1,9 +1,7 @@
 package cn.mcmod.recipedumper;
 
 import cn.mcmod.recipedumper.api.IRecipeDumperRegistry;
-import cn.mcmod.recipedumper.impl.DumpRecipeCommand;
-import cn.mcmod.recipedumper.impl.LegacyUpgradeRecipeDumper;
-import cn.mcmod.recipedumper.impl.RecipeDumperRegistry;
+import cn.mcmod.recipedumper.impl.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.commands.Commands;
 import net.minecraft.world.item.crafting.*;
@@ -32,14 +30,15 @@ public class RecipeDumper {
     }
 
     private void setup(FMLCommonSetupEvent event) {
-        REGISTRY.addRecipeDumper(ShapedRecipe.class, cn.mcmod.recipedumper.impl.ShapedRecipeDumper::new);
-        REGISTRY.addRecipeDumper(ShapelessRecipe.class, cn.mcmod.recipedumper.impl.ShapelessRecipeDumper::new);
-        REGISTRY.addRecipeDumper(StonecutterRecipe.class, cn.mcmod.recipedumper.impl.StoneCuttingRecipeDumper::new);
-        REGISTRY.addRecipeDumper(LegacyUpgradeRecipe.class, LegacyUpgradeRecipeDumper::new);
-        REGISTRY.addRecipeDumper(BlastingRecipe.class, cn.mcmod.recipedumper.impl.CookingRecipeDumper::new);
-        REGISTRY.addRecipeDumper(CampfireCookingRecipe.class, cn.mcmod.recipedumper.impl.CookingRecipeDumper::new);
-        REGISTRY.addRecipeDumper(SmeltingRecipe.class, cn.mcmod.recipedumper.impl.CookingRecipeDumper::new);
-        REGISTRY.addRecipeDumper(SmokingRecipe.class, cn.mcmod.recipedumper.impl.CookingRecipeDumper::new);
+        REGISTRY.addRecipeDumper(ShapedRecipe.class, ShapedRecipeDumper::new);
+        REGISTRY.addRecipeDumper(ShapelessRecipe.class, ShapelessRecipeDumper::new);
+        REGISTRY.addRecipeDumper(StonecutterRecipe.class, StoneCuttingRecipeDumper::new);
+        REGISTRY.addRecipeDumper(SmithingTrimRecipe.class, SmithingTrimRecipeDumper::new);
+        REGISTRY.addRecipeDumper(SmithingTransformRecipe.class, SmithingTransformRecipeDumper::new);
+        REGISTRY.addRecipeDumper(BlastingRecipe.class, CookingRecipeDumper::new);
+        REGISTRY.addRecipeDumper(CampfireCookingRecipe.class, CookingRecipeDumper::new);
+        REGISTRY.addRecipeDumper(SmeltingRecipe.class, CookingRecipeDumper::new);
+        REGISTRY.addRecipeDumper(SmokingRecipe.class, CookingRecipeDumper::new);
     }
 
     @SubscribeEvent
