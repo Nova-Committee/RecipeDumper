@@ -36,8 +36,8 @@ public final class DumpRecipeCommand {
         result.add("error", errorArray);
         outputJson(new File(String.format("exports/dump_recipes_%s.json", modId)), result);
         int recipesCount = Iterators.size(recipesArray.iterator());
-        source.sendSuccess(Component.literal("Dump recipes successfully! See exports Directory."), false);
-        source.sendSuccess(Component.literal(String.format("%s recipes dumped, %s recipes skipped", recipesCount, ERROR_RECIPES.size())), false);
+        source.sendSuccess(() -> Component.literal("Dump recipes successfully! See exports Directory."), false);
+        source.sendSuccess(() -> Component.literal(String.format("%s recipes dumped, %s recipes skipped", recipesCount, ERROR_RECIPES.size())), false);
         ERROR_RECIPES.clear();
         return recipesCount;
     }

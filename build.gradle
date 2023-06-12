@@ -17,7 +17,7 @@ plugins {
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'cn.mcmod.recipedumper.forge'
-version = '3.1'
+version = '3.2'
 
 java {
     archivesBaseName = 'RecipeDumper-Forge-1.20'
