@@ -12,12 +12,12 @@ public class RecipeOutputs
         implements IRecipeOutputs {
     final Int2ObjectMap<ItemStack> outputs = new Int2ObjectArrayMap<>();
 
-
+    @Override
     public void addOutput(int slot, ItemStack stack) {
         this.outputs.put(slot, stack);
     }
 
-
+    @Override
     public JsonObject serialize() throws RecipeDumpException {
         JsonObject json = new JsonObject();
         try {

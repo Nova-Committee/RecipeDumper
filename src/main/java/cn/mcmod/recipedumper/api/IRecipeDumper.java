@@ -7,8 +7,8 @@ import net.minecraft.core.RegistryAccess;
 public interface IRecipeDumper<T extends net.minecraft.world.item.crafting.Recipe<?>> {
     void setInputs(T paramT, IRecipeInputs paramIRecipeInputs);
 
-    default void setOutputs(T recipe, IRecipeOutputs outputs) {
-        outputs.addOutput(1, recipe.getResultItem(RegistryAccess.EMPTY));
+    default void setOutputs(T recipe, IRecipeOutputs outputs, RegistryAccess access) {
+        outputs.addOutput(1, recipe.getResultItem(access));
     }
 
 

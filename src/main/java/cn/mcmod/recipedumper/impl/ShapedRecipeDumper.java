@@ -8,6 +8,7 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 
 
 public class ShapedRecipeDumper implements IRecipeDumper<ShapedRecipe> {
+    @Override
     public void setInputs(ShapedRecipe recipe, IRecipeInputs inputs) {
         int width = recipe.getWidth();
         NonNullList<Ingredient> ingredients = recipe.getIngredients();
@@ -19,7 +20,7 @@ public class ShapedRecipeDumper implements IRecipeDumper<ShapedRecipe> {
         }
     }
 
-
+    @Override
     public String getRecipeTypeName(ShapedRecipe recipe) {
         return "crafting_shaped";
     }

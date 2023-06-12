@@ -16,7 +16,7 @@ public class RecipeInputs
     final Int2ObjectMap<Ingredient> inputs = new Int2ObjectArrayMap<>();
     final Int2IntMap counts = new Int2IntArrayMap();
 
-
+    @Override
     public void addInput(int slot, Ingredient ingredient, int count) {
         if (ingredient.isEmpty())
             return;
@@ -24,7 +24,7 @@ public class RecipeInputs
         this.counts.put(slot, count);
     }
 
-
+    @Override
     public JsonObject serialize() throws RecipeDumpException {
         JsonObject json = new JsonObject();
         if (this.inputs.size() != this.counts.size()) {

@@ -6,6 +6,7 @@ import cn.mcmod.recipedumper.mixins.ILegacyUpgradeRecipeAccessor;
 import net.minecraft.world.item.crafting.LegacyUpgradeRecipe;
 
 public class LegacyUpgradeRecipeDumper implements IRecipeDumper<LegacyUpgradeRecipe> {
+    @Override
     public void setInputs(LegacyUpgradeRecipe recipe, IRecipeInputs inputs) {
         ILegacyUpgradeRecipeAccessor accessor = (ILegacyUpgradeRecipeAccessor) recipe;
         inputs.addInput(1, accessor.getBase());

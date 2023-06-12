@@ -8,6 +8,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 
 public class ShapelessRecipeDumper implements IRecipeDumper<ShapelessRecipe> {
+    @Override
     public void setInputs(ShapelessRecipe recipe, IRecipeInputs inputs) {
         NonNullList<Ingredient> ingredients = recipe.getIngredients();
         for (int i = 0; i < ingredients.size(); i++) {
@@ -15,6 +16,7 @@ public class ShapelessRecipeDumper implements IRecipeDumper<ShapelessRecipe> {
         }
     }
 
+    @Override
     public String getRecipeTypeName(ShapelessRecipe recipe) {
         return "crafting_shapeless";
     }

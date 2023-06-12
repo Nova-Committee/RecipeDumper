@@ -10,16 +10,17 @@ import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 
 public class CookingRecipeDumper
         implements IRecipeDumper<AbstractCookingRecipe> {
+    @Override
     public void setInputs(AbstractCookingRecipe recipe, IRecipeInputs inputs) {
         inputs.addInput(1, recipe.getIngredients().get(0));
     }
 
-
-    public void setOutputs(AbstractCookingRecipe recipe, IRecipeOutputs outputs) {
-        outputs.addOutput(1, recipe.getResultItem(RegistryAccess.EMPTY));
+    @Override
+    public void setOutputs(AbstractCookingRecipe recipe, IRecipeOutputs outputs, RegistryAccess access) {
+        outputs.addOutput(1, recipe.getResultItem(access));
     }
 
-
+    @Override
     public void writeExtraInformation(AbstractCookingRecipe recipe, JsonObject jsonObject) {
         jsonObject.addProperty("experience", recipe.getExperience());
         jsonObject.addProperty("cookTime", recipe.getCookingTime());

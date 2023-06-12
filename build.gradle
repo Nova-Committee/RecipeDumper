@@ -20,7 +20,7 @@ group = 'cn.mcmod.recipedumper.forge'
 version = '3.1'
 
 java {
-    archivesBaseName = 'RecipeDumper-Forge-1.19.4-3.1'
+    archivesBaseName = 'RecipeDumper-Forge-1.19.4'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 

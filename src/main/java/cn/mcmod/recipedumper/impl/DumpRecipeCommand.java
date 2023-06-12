@@ -9,6 +9,7 @@ import com.google.common.collect.Iterators;
 import com.google.gson.*;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
@@ -28,7 +29,7 @@ public final class DumpRecipeCommand {
         String modId = context.getArgument("mod", String.class);
         CommandSourceStack source = context.getSource();
         RecipeManager recipeManager = source.getLevel().getRecipeManager();
-        JsonArray recipesArray = dumpAllRecipes(recipeManager, modId);
+        JsonArray recipesArray = dumpAllRecipes(recipeManager, modId, source.getLevel().registryAccess());
         JsonObject result = new JsonObject();
         result.add("recipes", recipesArray);
         JsonArray errorArray = new JsonArray();
@@ -42,12 +43,12 @@ public final class DumpRecipeCommand {
         return recipesCount;
     }
 
-    public static JsonArray dumpAllRecipes(RecipeManager recipeManager, String modFilter) {
+    public static JsonArray dumpAllRecipes(RecipeManager recipeManager, String modFilter, RegistryAccess access) {
         JsonArray array = new JsonArray();
         for (Recipe<?> recipe : recipeManager.getRecipes()) {
             if (recipe.getId().getNamespace().equals(modFilter) && RecipeDumper.getDumperRegistry().hasDumper(recipe.getClass())) {
                 try {
-                    array.add(dumpRecipe(recipe));
+                    array.add(dumpRecipe(recipe, access));
                 } catch (RecipeDumpException e) {
                     ERROR_RECIPES.add(recipe.getId());
                 }
@@ -65,7 +66,7 @@ public final class DumpRecipeCommand {
         }
     }
 
-    private static JsonObject dumpRecipe(Recipe<?> recipe) throws RecipeDumpException {
+    private static JsonObject dumpRecipe(Recipe<?> recipe, RegistryAccess access) throws RecipeDumpException {
         JsonObject jsonObject = new JsonObject();
         IRecipeDumper<Recipe<?>> recipeDumper = RecipeDumper.getDumperRegistry().getDumper(recipe.getClass());
         jsonObject.addProperty("type", recipeDumper.getRecipeTypeName(recipe));
@@ -73,7 +74,7 @@ public final class DumpRecipeCommand {
         IRecipeInputs inputs = new RecipeInputs();
         IRecipeOutputs outputs = new RecipeOutputs();
         recipeDumper.setInputs(recipe, inputs);
-        recipeDumper.setOutputs(recipe, outputs);
+        recipeDumper.setOutputs(recipe, outputs, access);
         jsonObject.add("input", inputs.serialize());
         jsonObject.add("output", outputs.serialize());
         recipeDumper.writeExtraInformation(recipe, jsonObject);
